@@ -9,9 +9,7 @@ class Game(object):
         self.turns = 0
         self.is_won = False
         self.is_ended = False
-
-    # process the initial state of colors
-    def new_game(self):
+        # process the initial state of colors
         while len(self.initial) < self.length:
             random_number = random.randint(MIN_COLOR, MAX_COLOR)
             if random_number not in self.initial:
@@ -34,7 +32,8 @@ class Game(object):
             elif guess[items] in self.initial:
                 white += 1
         self.turns += 1
-        print("black: {}  white: {}".format(black, white))
+        # print the points of each turn player earns : BLACK => Correct color and place, white => correct color
+        print(BLACK_AND_WHITE.format(black, white))
         self.check_state(black)
 
     # definition of to_string() --> split the initial_colors for printing
@@ -44,10 +43,10 @@ class Game(object):
     # check the if the user guess the right state
     def check_state(self, black):
         if self.check_win(black):
-            print("you won =))")
+            print(WIN_MESSAGE)
             self.end()
         elif self.check_lost():
-            print("you lose =(( the colors were {}".format(self.to_string()))
+            print(LOSE_MESSAGE.format(self.to_string()))
             self.end()
 
     # losing condition
@@ -62,8 +61,12 @@ class Game(object):
     def end(self):
         self.is_ended = True
 
+    # definition of start_game() this will start the game
+    def start_game(self):
+        # game.new_game()-->put this in __init__
+        for index in range(MAX_TURNS):
+            self.turn()
+
 
 game = Game()
-game.new_game()
-for index in range(MAX_TURNS):
-    game.turn()
+game.start_game()

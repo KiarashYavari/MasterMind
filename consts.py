@@ -9,3 +9,6 @@ COLORS = {
 MAX_COLOR = max(COLORS.keys())
 MIN_COLOR = min(COLORS.keys())
 MAX_TURNS = 10
+LOSE_MESSAGE = "you lose =(( the colors were {}"
+WIN_MESSAGE = "you won =))"
+BLACK_AND_WHITE = "black: {}  white: {}"
